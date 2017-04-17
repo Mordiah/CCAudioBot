@@ -11,7 +11,7 @@ using System.Web;
 namespace CCAudioBot.Dialogs
 {
     [Serializable]
-    [LuisModel("modelID", "subscriptionKey")]
+    [LuisModel("2c854884-394b-424f-9cc6-f660d81915b8", "0091c7f5c04542249870c45525fe1fce")]
     public class ClearComLuisDialog : LuisDialog<object>
     {
         private const string PickDateEntityType = "builtin.datetime.date";
@@ -25,28 +25,28 @@ namespace CCAudioBot.Dialogs
             context.Wait(MessageReceived);
         }
 
-        [LuisIntent("RentCar")]
-        public async Task Rent(IDialogContext context, LuisResult result)
+        [LuisIntent("JoinOrLeaveAChannel")]
+        public async Task JoinOrLeaveAChannel(IDialogContext context, LuisResult result)
         {
             var entities = new List<EntityRecommendation>(result.Entities);
-            foreach (var entity in result.Entities)
-            {
-                switch (entity.Type)
-                {
-                    case PickLocationEntityType:
-                        entities.Add(new EntityRecommendation(type: nameof(ClearComForm.PickLocation)) { Entity = entity.Entity });
-                        break;
-                    case PickDateEntityType:
-                        EntityRecommendation pickTime;
-                        result.TryFindEntity(PickTimeEntityType, out pickTime);
-                        var pickDateAndTime = entity.Entity + " " + pickTime?.Entity;
-                        if (!string.IsNullOrWhiteSpace(pickDateAndTime))
-                            entities.Add(new EntityRecommendation(type: nameof(ClearComForm.PickDateAndTime)) { Entity = pickDateAndTime });
-                        break;
-                    default:
-                        break;
-                }
-            }
+            //foreach (var entity in result.Entities)
+            //{
+            //    switch (entity.Type)
+            //    {
+            //        case PickLocationEntityType:
+            //            entities.Add(new EntityRecommendation(type: nameof(ClearComForm.PickLocation)) { Entity = entity.Entity });
+            //            break;
+            //        case PickDateEntityType:
+            //            EntityRecommendation pickTime;
+            //            result.TryFindEntity(PickTimeEntityType, out pickTime);
+            //            var pickDateAndTime = entity.Entity + " " + pickTime?.Entity;
+            //            if (!string.IsNullOrWhiteSpace(pickDateAndTime))
+            //                entities.Add(new EntityRecommendation(type: nameof(ClearComForm.PickDateAndTime)) { Entity = pickDateAndTime });
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //}
 
             var rentForm = new FormDialog<ClearComForm>(new ClearComForm(), ClearComForm.BuildForm, FormOptions.PromptInStart, entities);
             context.Call(rentForm, RentComplete);

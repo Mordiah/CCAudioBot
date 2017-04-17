@@ -9,12 +9,18 @@ using Microsoft.Bot.Connector;
 using Newtonsoft.Json;
 using Microsoft.Bot.Builder.Dialogs;
 using CCAudioBot.Dialogs;
+using Microsoft.Bot.Builder.FormFlow;
 
 namespace CCAudioBot
 {
     [BotAuthentication]
     public class MessagesController : ApiController
     {
+        internal static IFormDialog<ClearComForm> MakeRoot()
+        {
+            return FormDialog.FromForm(ClearComForm.BuildForm);
+        }
+
         /// <summary>
         /// POST: api/Messages
         /// Receive a message from a user and reply to it
@@ -23,7 +29,7 @@ namespace CCAudioBot
         {
             if (activity.Type == ActivityTypes.Message)
             {
-                await Conversation.SendAsync(activity, () => new ClearComLuisDialog());
+                await Conversation.SendAsync(activity, MakeRoot);
             }
             else
             {
