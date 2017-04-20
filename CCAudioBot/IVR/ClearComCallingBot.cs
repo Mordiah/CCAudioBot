@@ -43,7 +43,7 @@ namespace CCAudioBot.IVR
             incomingCallEvent.ResultingWorkflow.Actions = new List<ActionBase>
                 {
                     new Answer { OperationId = id },
-                    GetRecordForText("Welcome! I am the Clear Comm Audio Bot. How can I help you?")
+                    GetRecordForText("Welcome! I am the Clear Com Audio Bot. How can I help you?")
                 };
 
             return Task.FromResult(true);
