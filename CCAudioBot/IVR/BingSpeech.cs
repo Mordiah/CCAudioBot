@@ -29,7 +29,8 @@ namespace CCAudioBot.IVR
         }
 
         public string DefaultLocale { get; } = "en-US";
-        public string SubscriptionKey { get; } = "key";
+        public string PrimaryKey { get; } = "6bc62fa106d34215be2b35b8a0fdde23";
+        public string SecondaryKey { get; } = "2eee41666c654a9286a7f46f701e1ed1";
         public string CrisUri { get; } = "CRIS ShorPhrase URI";
         public string AuthenticationUri { get; } = "https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken";
 
@@ -38,8 +39,8 @@ namespace CCAudioBot.IVR
             dataClient = SpeechRecognitionServiceFactory.CreateDataClient(
                 SpeechRecognitionMode.ShortPhrase,
                 DefaultLocale,
-                SubscriptionKey,
-                SubscriptionKey,
+                PrimaryKey,
+                SecondaryKey,
                 CrisUri);
 
             dataClient.AuthenticationUri = AuthenticationUri;

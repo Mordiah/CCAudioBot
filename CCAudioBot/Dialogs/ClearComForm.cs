@@ -40,6 +40,9 @@ namespace CCAudioBot.Dialogs
 
             return clearComForm
                 .Message("How can I help you")
+                .Field(nameof(MemberName))
+                .Field(nameof(ChannelName))
+                .Field(nameof(JoinOrLeave))
                 .AddRemainingFields()
                 .OnCompletion(async (session, ClearComForm) =>
                 {
