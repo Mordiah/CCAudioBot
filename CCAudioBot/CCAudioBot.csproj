@@ -150,6 +150,7 @@
     <Compile Include="IVR\BingSpeech.cs" />
     <Compile Include="IVR\BotToUserSpeech.cs" />
     <Compile Include="IVR\ClearComCallingBot.cs" />
+    <Compile Include="Models\JoinOrLeaveAChannel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
